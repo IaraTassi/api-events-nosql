@@ -6,3 +6,22 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
+model Event {
+  id String @db.ObjectId @default(auto()) @id @map("_id")
+  name String
+  description String
+  eventDate DateTime 
+  location String 
+  isSoldOut Boolean @default(false)
+
+  participants Participants[]
+
+  dtCreation DateTime @default(now())
+  dtUpdate DateTime @updatedAt
+}
+
+type Participants {
+  name String
+  email String 
+}

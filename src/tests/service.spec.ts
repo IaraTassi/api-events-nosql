@@ -1,4 +1,5 @@
 import { createEvent } from "../events/createEvent";
+import { addParticipant } from "../events/addParticipant";
 
 describe("Create Event", () => {
   it("should create an event with default values", () => {
@@ -62,5 +63,53 @@ describe("Create Event", () => {
     };
 
     expect(() => createEvent(input)).toThrow("Event eventDate is required");
+  });
+});
+
+describe("Add participant to event", () => {
+  it("should add a participant to an event", () => {
+    const event = {
+      name: "Tech Conference",
+      description: "An event about technology",
+      location: "São Paulo",
+      eventDate: new Date("2030-01-01"),
+      isSoldOut: false,
+      participants: [],
+    };
+
+    const participant = {
+      name: "Carolina Souza",
+      email: "carolina.souza@example.com",
+    };
+
+    const updatedEvent = addParticipant(event, participant);
+
+    expect(updatedEvent.participants).toHaveLength(1);
+
+    const [firstParticipant] = updatedEvent.participants;
+
+    expect(firstParticipant).toBeDefined();
+    expect(firstParticipant!.name).toBe(participant.name);
+    expect(firstParticipant!.email).toBe(participant.email);
+  });
+
+  it("should not add participant to a sold out event", () => {
+    const event = {
+      name: "Tech Conference",
+      description: "An event about technology",
+      location: "São Paulo",
+      eventDate: new Date("2030-01-01"),
+      isSoldOut: true,
+      participants: [],
+    };
+
+    const participant = {
+      name: "Carolina Souza",
+      email: "carolina.souza@example.com",
+    };
+
+    expect(() => addParticipant(event, participant)).toThrow(
+      "Event is sold out",
+    );
   });
 });

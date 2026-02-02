@@ -1,9 +1,9 @@
-import { createEvent } from "../events/createEvent";
-import { addParticipant } from "../events/addParticipant";
-import { deleteEvent } from "../events/deleteEvent";
-import { Event } from "../events/event";
-import { listEvent } from "../events/listEvent";
-import { makeEventSoldOut } from "../events/markeEventSoldOut";
+import { createEvent } from "../domain/createEvent";
+import { addParticipant } from "../domain/addParticipant";
+import { deleteEvent } from "../domain/deleteEvent";
+import { Event } from "../domain/event";
+import { listEvent } from "../domain/listEvent";
+import { makeEventSoldOut } from "../domain/markeEventSoldOut";
 
 describe("Create Event", () => {
   it("should create an event with default values", () => {

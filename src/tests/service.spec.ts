@@ -244,4 +244,23 @@ describe("Make the event sell out", () => {
 
     expect(updatedEvent.isSoldOut).toBe(true);
   });
+
+  it("should not mark event as sold out if event already happended", () => {
+    const event = {
+      id: "1",
+      name: "Tech Conference",
+      description: "An event about technology",
+      location: "São Paulo",
+      eventDate: new Date("2026-02-02"),
+      isSoldOut: false,
+      participants: [
+        {
+          name: "Carolina Souza",
+          email: "carolina.souza@example.com",
+        },
+      ],
+    };
+
+    expect(() => makeEventSoldOut(event)).toThrow("Event already happened");
+  });
 });

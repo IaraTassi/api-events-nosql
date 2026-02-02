@@ -10,6 +10,13 @@ export function addParticipant(event: Event, participant: Participant): Event {
     throw new Error("Event already happened");
   }
 
+  const emailAlreadyExists = event.participants.some(
+    (p) => p.email === participant.email,
+  );
+  if (emailAlreadyExists) {
+    throw new Error("Participant already registered");
+  }
+
   event.participants.push(participant);
   return event;
 }

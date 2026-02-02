@@ -132,4 +132,29 @@ describe("Add participant to event", () => {
       "Event already happened",
     );
   });
+
+  it("should not add a participant with duplicated email", () => {
+    const event = {
+      name: "Tech Conference",
+      description: "An event about technology",
+      location: "São Paulo",
+      eventDate: new Date("2030-01-01"),
+      isSoldOut: false,
+      participants: [
+        {
+          name: "Carolina Souza",
+          email: "carolina.souza@example.com",
+        },
+      ],
+    };
+
+    const participant = {
+      name: "Outro Participante",
+      email: "carolina.souza@example.com",
+    };
+
+    expect(() => addParticipant(event, participant)).toThrow(
+      "Participant already registered",
+    );
+  });
 });

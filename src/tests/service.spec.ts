@@ -3,6 +3,7 @@ import { addParticipant } from "../events/addParticipant";
 import { deleteEvent } from "../events/deleteEvent";
 import { Event } from "../events/event";
 import { listEvent } from "../events/listEvent";
+import { makeEventSoldOut } from "../events/markeEventSoldOut";
 
 describe("Create Event", () => {
   it("should create an event with default values", () => {
@@ -219,5 +220,28 @@ describe("List event", () => {
     expect(firstEvent).toBeDefined();
     expect(firstEvent!.id).toBe("1");
     expect(firstEvent!.name).toBe("Tech Conference");
+  });
+});
+
+describe("Make the event sell out", () => {
+  it("should mark event as sold out", () => {
+    const event = {
+      id: "1",
+      name: "Tech Conference",
+      description: "An event about technology",
+      location: "São Paulo",
+      eventDate: new Date("2030-01-01"),
+      isSoldOut: false,
+      participants: [
+        {
+          name: "Carolina Souza",
+          email: "carolina.souza@example.com",
+        },
+      ],
+    };
+
+    const updatedEvent = makeEventSoldOut(event);
+
+    expect(updatedEvent.isSoldOut).toBe(true);
   });
 });

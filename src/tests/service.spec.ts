@@ -263,4 +263,20 @@ describe("Make the event sell out", () => {
 
     expect(() => makeEventSoldOut(event)).toThrow("Event already happened");
   });
+
+  it("should not mark event as sold out if there are no participant", () => {
+    const event = {
+      id: "1",
+      name: "Tech Conference",
+      description: "An event about technology",
+      location: "São Paulo",
+      eventDate: new Date("2030-01-01"),
+      isSoldOut: false,
+      participants: [],
+    };
+
+    expect(() => makeEventSoldOut(event)).toThrow(
+      "Event must have at least one participant",
+    );
+  });
 });

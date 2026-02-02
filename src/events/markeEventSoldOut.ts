@@ -7,6 +7,10 @@ export function makeEventSoldOut(event: Event): Event {
     throw new Error("Event already happened");
   }
 
+  if (event.participants.length === 0) {
+    throw new Error("Event must have at least one participant");
+  }
+
   event.isSoldOut = true;
   return event;
 }

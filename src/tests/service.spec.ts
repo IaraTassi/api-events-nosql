@@ -112,4 +112,24 @@ describe("Add participant to event", () => {
       "Event is sold out",
     );
   });
+
+  it("should not add participant to an event that already happened", () => {
+    const event = {
+      name: "Tech Conference",
+      description: "An event about technology",
+      location: "São Paulo",
+      eventDate: new Date("2026-02-02"),
+      isSoldOut: false,
+      participants: [],
+    };
+
+    const participant = {
+      name: "Carolina Souza",
+      email: "carolina.souza@example.com",
+    };
+
+    expect(() => addParticipant(event, participant)).toThrow(
+      "Event already happened",
+    );
+  });
 });

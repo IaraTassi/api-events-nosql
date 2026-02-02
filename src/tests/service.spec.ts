@@ -2,6 +2,7 @@ import { createEvent } from "../events/createEvent";
 import { addParticipant } from "../events/addParticipant";
 import { deleteEvent } from "../events/deleteEvent";
 import { Event } from "../events/event";
+import { listEvent } from "../events/listEvent";
 
 describe("Create Event", () => {
   it("should create an event with default values", () => {
@@ -192,5 +193,31 @@ describe("Delete event", () => {
 
     expect(events).toHaveLength(1);
     expect(events.find((e) => e.id === "1")).toBeUndefined();
+  });
+});
+
+describe("List event", () => {
+  it("should list events successfully", () => {
+    const event = [
+      {
+        id: "1",
+        name: "Tech Conference",
+        description: "An event about technology",
+        location: "São Paulo",
+        eventDate: new Date("2030-01-01"),
+        isSoldOut: false,
+        participants: [],
+      },
+    ];
+
+    const result = listEvent(event);
+
+    expect(result).toHaveLength(1);
+
+    const firstEvent = result[0];
+
+    expect(firstEvent).toBeDefined();
+    expect(firstEvent!.id).toBe("1");
+    expect(firstEvent!.name).toBe("Tech Conference");
   });
 });

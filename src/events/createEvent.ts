@@ -1,3 +1,4 @@
+import { randomUUID } from "crypto";
 import { Event } from "./event";
 
 type CreateEventInput = {
@@ -25,6 +26,7 @@ export function createEvent(input: CreateEventInput): Event {
   }
 
   return {
+    id: randomUUID(),
     name: input.name,
     description: input.description,
     location: input.location,

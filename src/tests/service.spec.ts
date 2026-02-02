@@ -1,5 +1,7 @@
 import { createEvent } from "../events/createEvent";
 import { addParticipant } from "../events/addParticipant";
+import { deleteEvent } from "../events/deleteEvent";
+import { Event } from "../events/event";
 
 describe("Create Event", () => {
   it("should create an event with default values", () => {
@@ -69,6 +71,7 @@ describe("Create Event", () => {
 describe("Add participant to event", () => {
   it("should add a participant to an event", () => {
     const event = {
+      id: "1",
       name: "Tech Conference",
       description: "An event about technology",
       location: "São Paulo",
@@ -95,6 +98,7 @@ describe("Add participant to event", () => {
 
   it("should not add participant to a sold out event", () => {
     const event = {
+      id: "1",
       name: "Tech Conference",
       description: "An event about technology",
       location: "São Paulo",
@@ -115,6 +119,7 @@ describe("Add participant to event", () => {
 
   it("should not add participant to an event that already happened", () => {
     const event = {
+      id: "1",
       name: "Tech Conference",
       description: "An event about technology",
       location: "São Paulo",
@@ -135,6 +140,7 @@ describe("Add participant to event", () => {
 
   it("should not add a participant with duplicated email", () => {
     const event = {
+      id: "1",
       name: "Tech Conference",
       description: "An event about technology",
       location: "São Paulo",
@@ -156,5 +162,35 @@ describe("Add participant to event", () => {
     expect(() => addParticipant(event, participant)).toThrow(
       "Participant already registered",
     );
+  });
+});
+
+describe("Delete event", () => {
+  it("should delete an existing event", () => {
+    const events: Event[] = [
+      {
+        id: "1",
+        name: "Event 1",
+        description: "Desc 1",
+        location: "Location 1",
+        eventDate: new Date("2030-01-01"),
+        isSoldOut: false,
+        participants: [],
+      },
+      {
+        id: "2",
+        name: "Event 2",
+        description: "Desc 2",
+        location: "Location 2",
+        eventDate: new Date("2030-01-01"),
+        isSoldOut: false,
+        participants: [],
+      },
+    ];
+
+    deleteEvent(events, "1");
+
+    expect(events).toHaveLength(1);
+    expect(events.find((e) => e.id === "1")).toBeUndefined();
   });
 });

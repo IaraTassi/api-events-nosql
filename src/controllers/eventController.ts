@@ -16,4 +16,8 @@ export class EventController {
   ): Return<Event> {
     return this.service.addParticipant(eventId, participant);
   }
+
+  public listEvent(): Return<Event[]> {
+    return this.service.listEvent();
+  }
 }

@@ -4,4 +4,5 @@ export interface EventRepository {
   create(event: Event): void;
   findById(id: string): Event;
   update(event: Event): void;
+  findAll(): Event[];
 }

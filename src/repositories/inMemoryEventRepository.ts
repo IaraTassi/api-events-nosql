@@ -21,4 +21,8 @@ export class InMemoryEventRepository implements EventRepository {
     if (index === -1) throw new Error("Event not found");
     this.events[index] = event;
   }
+
+  findAll(): Event[] {
+    return [...this.events];
+  }
 }

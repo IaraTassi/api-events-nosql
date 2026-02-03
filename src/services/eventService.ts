@@ -8,6 +8,27 @@ export class EventService {
 
   public createEvent(event: Event): Return<Event> {
     try {
+      if (!event.name || !event.description || !event.location) {
+        return {
+          ok: false,
+          message: "Missing required event data",
+        };
+      }
+
+      if (!event.eventDate) {
+        return {
+          ok: false,
+          message: "Event date is required",
+        };
+      }
+
+      if (event.eventDate < new Date()) {
+        return {
+          ok: false,
+          message: "Event data must be in the future",
+        };
+      }
+
       this.repository.create(event);
 
       return {

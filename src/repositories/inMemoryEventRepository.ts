@@ -7,4 +7,18 @@ export class InMemoryEventRepository implements EventRepository {
   create(event: Event): void {
     this.events.push(event);
   }
+
+  findById(id: string): Event {
+    const event = this.events.find((e) => e.id === id);
+    if (!event) {
+      throw new Error("Event not found");
+    }
+    return event;
+  }
+
+  update(event: Event): void {
+    const index = this.events.findIndex((e) => e.id === event.id);
+    if (index === -1) throw new Error("Event not found");
+    this.events[index] = event;
+  }
 }

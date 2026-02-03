@@ -78,4 +78,20 @@ export class EventService {
       return { ok: false, message: error?.message || "Unknown error" };
     }
   }
+
+  public listEvent(): Return<Event[]> {
+    try {
+      const events = this.repository.findAll();
+      return {
+        ok: true,
+        message: "List successffuly events",
+        data: events,
+      };
+    } catch (error: any) {
+      return {
+        ok: false,
+        message: error.message || "Unknown error",
+      };
+    }
+  }
 }

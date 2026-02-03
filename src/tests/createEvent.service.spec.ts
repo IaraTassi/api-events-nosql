@@ -23,7 +23,7 @@ describe("EventService - craeteEvent", () => {
 
     expect(result.ok).toBe(true);
     expect(result.data).toEqual(event);
-    expect(result.data).toBe("Event create successfully");
+    expect(result.message).toBe("Event created successfully");
   });
 
   it("should return error if repository throws", () => {

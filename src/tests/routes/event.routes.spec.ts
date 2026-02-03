@@ -1,9 +1,9 @@
 import request from "supertest";
 import express, { Express } from "express";
-import { EventController } from "../controllers/eventController";
-import { EventService } from "../services/eventService";
-import { InMemoryEventRepository } from "../repositories/inMemoryEventRepository";
-import { createEvent } from "../domain/createEvent";
+import { EventController } from "../../controllers/eventController";
+import { EventService } from "../../services/eventService";
+import { InMemoryEventRepository } from "../../repositories/inMemoryEventRepository";
+import { createEvent } from "../../domain/createEvent";
 
 let app: Express;
 

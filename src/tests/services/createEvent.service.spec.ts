@@ -1,7 +1,7 @@
-import { EventRepository } from "../repositories/eventRepository";
-import { InMemoryEventRepository } from "../repositories/inMemoryEventRepository";
-import { EventService } from "../services/eventService";
-import { createEvent } from "../domain/createEvent";
+import { EventRepository } from "../../repositories/eventRepository";
+import { InMemoryEventRepository } from "../../repositories/inMemoryEventRepository";
+import { EventService } from "../../services/eventService";
+import { createEvent } from "../../domain/createEvent";
 
 describe("EventService - craeteEvent", () => {
   let repository: EventRepository;

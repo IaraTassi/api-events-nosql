@@ -25,4 +25,12 @@ export class InMemoryEventRepository implements EventRepository {
   findAll(): Event[] {
     return [...this.events];
   }
+
+  delete(id: string): void {
+    const index = this.events.findIndex((e) => e.id === id);
+    if (index === -1) {
+      throw new Error("Event not found");
+    }
+    this.events.splice(index, 1);
+  }
 }

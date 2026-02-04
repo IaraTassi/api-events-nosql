@@ -5,4 +5,5 @@ export interface EventRepository {
   findById(id: string): Event;
   update(event: Event): void;
   findAll(): Event[];
+  delete(id: string): void;
 }

@@ -128,4 +128,20 @@ export class EventService {
       };
     }
   }
+
+  public deleteEvent(eventId: string): Return<Event> {
+    try {
+      this.repository.delete(eventId);
+
+      return {
+        ok: true,
+        message: "Event deleted successfully",
+      };
+    } catch (error: any) {
+      return {
+        ok: false,
+        message: error.message || "Unknwon error",
+      };
+    }
+  }
 }

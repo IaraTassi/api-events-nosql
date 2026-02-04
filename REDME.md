@@ -2,6 +2,10 @@
 
 A simple REST API to manage events and participants using **Node.js**, **TypeScript**, **Prisma ORM** and **MongoDB**.
 
+## 👩‍💻 Developed by
+
+Iara Tassi
+
 This project focuses on clean code, business rules and **Test Driven Development (TDD)**.
 
 ---
@@ -67,10 +71,46 @@ This project is being developed using **Test Driven Development (TDD)**.
 - Prisma ORM
 - MongoDB
 - Jest (for testing)
+- Supertest
 
 ---
 
-## 🚧 Project Status
+## ▶️ How to Run
 
-🚧 In progress  
-Development guided by TDD and incremental commits.
+### Install dependencies
+
+```bash
+npm install
+```
+
+Run the application
+
+```bash
+npm run dev
+```
+
+Run tests
+
+```bash
+npm test
+```
+
+Run test coverage
+
+```bash
+npm run test:coverage
+```
+
+## 📊 Test Coverage
+
+- Controllers: 100%
+- Functions: 100%
+- Overall coverage: ~94%
+
+Tests include both success and failure scenarios for all business rules.
+
+## 🚀 Project Status
+
+✅ Completed
+Project developed using TDD with full implementation of business rules and test coverage.
+This project was designed to demonstrate clean architecture, business rule validation and confidence in automated testing.

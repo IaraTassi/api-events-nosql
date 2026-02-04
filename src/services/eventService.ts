@@ -94,4 +94,23 @@ export class EventService {
       };
     }
   }
+
+  public markEventAsSoldOut(eventId: string): Return<Event> {
+    try {
+      const event = this.repository.findById(eventId);
+
+      event.isSoldOut = true;
+      this.repository.update(event);
+
+      return {
+        ok: true,
+        message: "Event marked as sold out successfully",
+      };
+    } catch (error: any) {
+      return {
+        ok: false,
+        message: error.message || "Unknown error",
+      };
+    }
+  }
 }

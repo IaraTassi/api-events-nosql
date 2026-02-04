@@ -99,6 +99,13 @@ export class EventService {
     try {
       const event = this.repository.findById(eventId);
 
+      if (new Date(event.eventDate) < new Date()) {
+        return {
+          ok: false,
+          message: "Event already happened",
+        };
+      }
+
       event.isSoldOut = true;
       this.repository.update(event);
 

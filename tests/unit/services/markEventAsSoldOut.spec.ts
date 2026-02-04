@@ -1,4 +1,3 @@
-import { addParticipant } from "../../../src/domain/addParticipant";
 import { createEvent } from "../../../src/domain/createEvent";
 import { InMemoryEventRepository } from "../../../src/repositories/inMemoryEventRepository";
 import { EventService } from "../../../src/services/eventService";
@@ -30,5 +29,25 @@ describe("EventService - markEventAsSoldOut", () => {
 
     expect(result.ok).toBe(true);
     expect(result.data?.isSoldOut).toBe(true);
+  });
+
+  it("should fail to mark event as sold out when event has date already happened", () => {
+    const event = createEvent({
+      name: "Tech Conference",
+      description: "Event about technology",
+      location: "São Paulo",
+      eventDate: new Date("2020-01-01"),
+    });
+    repository.create(event);
+
+    service.addParticipant(event.id, {
+      name: "Carolina Souza",
+      email: "carolina.souza@example.com",
+    });
+
+    const result = service.markEventAsSoldOut(event.id);
+
+    expect(result.ok).toBe(false);
+    expect(result.message).toBe("Event already happened");
   });
 });

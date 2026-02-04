@@ -1,6 +1,6 @@
 import request from "supertest";
-import { createEvent } from "../../src/domain/createEvent";
-import { createApp } from "../../src/app";
+import { createEvent } from "../../../src/domain/createEvent";
+import { createApp } from "../../../src/app";
 
 describe("Event Routes", () => {
   let app: any;

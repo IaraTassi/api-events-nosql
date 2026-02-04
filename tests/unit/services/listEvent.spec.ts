@@ -1,5 +1,5 @@
-import { InMemoryEventRepository } from "../../src/repositories/inMemoryEventRepository";
-import { EventService } from "../../src/services/eventService";
+import { InMemoryEventRepository } from "../../../src/repositories/inMemoryEventRepository";
+import { EventService } from "../../../src/services/eventService";
 
 describe("EventService - listEvent", () => {
   let repository: InMemoryEventRepository;

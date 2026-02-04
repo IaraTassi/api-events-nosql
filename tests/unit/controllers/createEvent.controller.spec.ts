@@ -1,6 +1,6 @@
-import { EventController } from "../../src/controllers/eventController";
-import { EventService } from "../../src/services/eventService";
-import { Event } from "../../src/domain/event";
+import { EventController } from "../../../src/controllers/eventController";
+import { EventService } from "../../../src/services/eventService";
+import { Event } from "../../../src/domain/event";
 
 describe("EventController - createEvent", () => {
   let controller: EventController;

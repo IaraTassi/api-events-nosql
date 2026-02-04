@@ -1,5 +1,5 @@
-import { EventController } from "../../src/controllers/eventController";
-import { EventService } from "../../src/services/eventService";
+import { EventController } from "../../../src/controllers/eventController";
+import { EventService } from "../../../src/services/eventService";
 
 describe("EventController - listEvent", () => {
   let controller: EventController;

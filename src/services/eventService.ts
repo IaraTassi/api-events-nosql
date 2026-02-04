@@ -106,6 +106,13 @@ export class EventService {
         };
       }
 
+      if (!event.participants || event.participants.length === 0) {
+        return {
+          ok: false,
+          message: "Event has no participants",
+        };
+      }
+
       event.isSoldOut = true;
       this.repository.update(event);
 

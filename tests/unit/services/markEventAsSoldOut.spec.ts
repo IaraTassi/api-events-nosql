@@ -50,4 +50,19 @@ describe("EventService - markEventAsSoldOut", () => {
     expect(result.ok).toBe(false);
     expect(result.message).toBe("Event already happened");
   });
+
+  it("should fail to mark event as sold out when event has no participants", () => {
+    const event = createEvent({
+      name: "Tech Conference",
+      description: "Event about technology",
+      location: "São Paulo",
+      eventDate: new Date("2030-01-01"),
+    });
+    repository.create(event);
+
+    const result = service.markEventAsSoldOut(event.id);
+
+    expect(result.ok).toBe(false);
+    expect(result.message).toBe("Event has no participants");
+  });
 });

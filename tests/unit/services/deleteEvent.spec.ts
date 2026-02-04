@@ -26,4 +26,11 @@ describe("EventService - deleteEvent", () => {
     expect(result.message).toBe("Event deleted successfully");
     expect(() => repository.findById(event.id)).toThrow("Event not found");
   });
+
+  it("should fail when trying to delete a non-existing event", () => {
+    const result = service.deleteEvent("invalid-id");
+
+    expect(result.ok).toBe(false);
+    expect(result.message).toBe("Event not found");
+  });
 });

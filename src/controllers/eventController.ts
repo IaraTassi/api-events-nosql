@@ -20,4 +20,8 @@ export class EventController {
   public listEvent(): Return<Event[]> {
     return this.service.listEvent();
   }
+
+  public deleteEvent(eventId: string): Return<Event> {
+    return this.service.deleteEvent(eventId);
+  }
 }

@@ -105,6 +105,7 @@ export class EventService {
       return {
         ok: true,
         message: "Event marked as sold out successfully",
+        data: event,
       };
     } catch (error: any) {
       return {

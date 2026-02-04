@@ -11,4 +11,9 @@ export function eventRoutes(app: Application, controller: EventController) {
     const result = controller.addParticipant(req.params.id, req.body);
     res.status(result.ok ? 200 : 400).json(result);
   });
+
+  app.get("/events", (req, res) => {
+    const result = controller.listEvent();
+    res.status(result.ok ? 200 : 400).json(result);
+  });
 }

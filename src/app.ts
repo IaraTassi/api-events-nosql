@@ -4,13 +4,15 @@ import { EventService } from "./services/eventService";
 import { EventController } from "./controllers/eventController";
 import { eventRoutes } from "./routes/event.routes";
 
-const app = express();
-app.use(express.json());
+export function createApp() {
+  const app = express();
+  app.use(express.json());
 
-const repository = new InMemoryEventRepository();
-const service = new EventService(repository);
-const controller = new EventController(service);
+  const repository = new InMemoryEventRepository();
+  const service = new EventService(repository);
+  const controller = new EventController(service);
 
-eventRoutes(app, controller);
+  eventRoutes(app, controller);
 
-export { app };
+  return { app, repository };
+}

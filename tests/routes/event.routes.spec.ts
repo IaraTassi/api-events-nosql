@@ -1,8 +1,14 @@
 import request from "supertest";
 import { createEvent } from "../../src/domain/createEvent";
-import { app } from "../../src/app";
+import { createApp } from "../../src/app";
 
 describe("Event Routes", () => {
+  let app: any;
+
+  beforeEach(() => {
+    ({ app } = createApp());
+  });
+
   describe("POST /events", () => {
     it("should create a new event and return 201", async () => {
       const event = createEvent({
@@ -64,6 +70,34 @@ describe("Event Routes", () => {
       expect(response.status).toBe(400);
       expect(response.body.ok).toBe(false);
       expect(response.body.message).toBe("Event not found");
+    });
+  });
+
+  describe("GET /events", () => {
+    it("should list events", async () => {
+      const event = createEvent({
+        name: "Tech Conference",
+        description: "Event about technology",
+        location: "São Paulo",
+        eventDate: new Date("2030-01-01"),
+      });
+
+      await request(app).post("/events").send(event);
+
+      const response = await request(app).get("/events");
+
+      expect(response.status).toBe(200);
+      expect(response.body.data).toHaveLength(1);
+      expect(response.body.data[0].name).toBe("Tech Conference");
+    });
+
+    it("should return empty array when no events exist", async () => {
+      const response = await request(app).get("/events");
+
+      expect(response.status).toBe(200);
+      expect(response.body.ok).toBe(true);
+      expect(response.body.data).toHaveLength(0);
+      expect(response.body.data).toEqual([]);
     });
   });
 });

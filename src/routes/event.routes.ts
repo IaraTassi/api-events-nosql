@@ -16,4 +16,9 @@ export function eventRoutes(app: Application, controller: EventController) {
     const result = controller.listEvent();
     res.status(result.ok ? 200 : 400).json(result);
   });
+
+  app.delete("/events/:id", (req, res) => {
+    const result = controller.deleteEvent(req.params.id);
+    res.status(result.ok ? 200 : 400).json(result);
+  });
 }

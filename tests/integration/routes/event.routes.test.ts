@@ -100,4 +100,32 @@ describe("Event Routes", () => {
       expect(response.body.data).toEqual([]);
     });
   });
+
+  describe("DELETE /events/:id", () => {
+    it("should delete an event successfully", async () => {
+      const event = createEvent({
+        name: "Tech Conference",
+        description: "Event about technology",
+        location: "São Paulo",
+        eventDate: new Date("2030-01-01"),
+      });
+
+      const createResponse = await request(app).post("/events").send(event);
+      const eventId = createResponse.body.data.id;
+
+      const response = await request(app).delete(`/events/${eventId}`);
+
+      expect(response.status).toBe(200);
+      expect(response.body.ok).toBe(true);
+      expect(response.body.message).toBe("Event deleted successfully");
+    });
+
+    it("should return 400 when trying to delete a nom existing event", async () => {
+      const response = await request(app).delete("/events/invalid-id");
+
+      expect(response.status).toBe(400);
+      expect(response.body.ok).toBe(false);
+      expect(response.body.message).toBe("Event not found");
+    });
+  });
 });
